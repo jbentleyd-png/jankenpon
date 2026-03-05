@@ -14,10 +14,22 @@ console.log(getCompPlay());
 /* Get User's Move: */
 function getUserMove() {
   let play;
-  while (play == undefined || play == "Enter") {
-    play = prompt("Please enter 'Rock', 'Paper', or 'Scissors'", "Enter"); //decent, add in reformatting in a second.
+  while (!(play === "Rock" || play === "Paper" || play === "Scissors")) {
+    //check for what we want, not what we don't want.
+    play = prompt("Please enter 'Rock', 'Paper', or 'Scissors'"); //decent, add in reformatting in a second.
+    play = capitalize(play);
   }
   return play;
 }
 
 console.log("Player threw " + getUserMove() + ".");
+
+/* Standardize spelling so user input is not case sensitive:*/
+function capitalize(word) {
+  let first = word[0].toUpperCase(); //select and capitalize first lettter
+  let rest = word.slice(1).toLowerCase(); //work with the end
+  //combine
+  return first + rest;
+}
+
+console.log(capitalize("fROg"));
