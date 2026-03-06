@@ -15,8 +15,8 @@ function getUserMove(tieMessage = "") {
     play == ""
   ) {
     //check for what we want, not what we don't want.
-    play = prompt(tieMessage + "Please enter 'Rock', 'Paper', or 'Scissors'"); //decent, add in reformatting in a second.
-    play = capitalize(play);
+    play = prompt(tieMessage + "Please enter 'Rock', 'Paper', or 'Scissors'");
+    play = standardize(play);
   }
   return play;
 }
@@ -24,27 +24,40 @@ function getUserMove(tieMessage = "") {
 // console.log("Player threw " + getUserMove() + ".");
 
 /* Standardize spelling so user input is not case sensitive: */
-function capitalize(word) {
-  if (!word) return ""; // prevent enpty inputs by returning falsy values as "" (see condition above)
+function standardize(word) {
+  // prevent empty inputs by returning falsy values as "" (see condition above)
+  if (!word) return "";
+
+  //if single letters were inputted, return them as the full word:
+  if (word.length == 1) {
+    word = word.toUpperCase();
+    if (word == "R") return "Rock";
+    if (word == "P") return "Paper";
+    if (word == "S") return "Scissors";
+  }
+
+  //or standardize the full word
   let first = word[0].toUpperCase(); //select and capitalize first lettter
-  let rest = word.slice(1).toLowerCase(); //work with the end
+  let rest = word.slice(1).toLowerCase(); //lowercase the end
   //combine
   return first + rest;
 }
 
-// console.log(capitalize("fROg"));
+// console.log(standardize("fROg"));
 
 /* Play a round and get result: */
 function playRound() {
   let userMove = getUserMove();
   let compPlay = getCompPlay();
-  let win; // scope issue?
+  let win;
   while (userMove == compPlay) {
     //has to be WHILE.
     //check for ties first.
     compPlay = getCompPlay(); // computer has to throw again, too (BEFORE we ask for the player's play, so there is no advantage)
+    console.log("Rethrow = " + compPlay);
     userMove = getUserMove("It's a tie! Throw again! "); //communicate that the tie happened.
   }
+  console.log(compPlay); //wanna check behavior
   // determine win:
   if (userMove == "Rock") {
     if (compPlay == "Scissors") {
