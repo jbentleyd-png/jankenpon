@@ -43,7 +43,7 @@ function playRound() {
     //has to be WHILE.
     //check for ties first.
     compPlay = getCompPlay(); // computer has to throw again, too (BEFORE we ask for the player's play, so there is no advantage)
-    let userMove = getUserMove("It's a tie! Throw again! "); //communicate that the tie happened.
+    userMove = getUserMove("It's a tie! Throw again! "); //communicate that the tie happened.
   }
   // determine win:
   if (userMove == "Rock") {
