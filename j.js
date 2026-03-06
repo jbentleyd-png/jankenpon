@@ -59,6 +59,7 @@ function playRound() {
     win = false;
   }
   tellResult(userMove, compPlay, win); // alert result
+  return win; //return win status
 }
 
 // alert based on win:
@@ -71,9 +72,22 @@ function tellResult(user, comp, win) {
   }
   alert(user + " vs. " + comp + "\n" + message);
 }
+/*
+playRound();
+playRound();
+playRound();
+playRound();
+playRound();
+playRound();
+playRound();
+playRound();
+playRound();
+playRound();
+*/
+function playJankenPon() {
+  for (let i = 0; i < 5; i++) {
+    playRound();
+  }
+}
 
-playRound();
-playRound();
-playRound();
-playRound();
-playRound();
+playJankenPon();
