@@ -5,11 +5,7 @@ function getCompPlay() {
   return play;
 }
 
-console.log(getCompPlay());
-console.log(getCompPlay());
-console.log(getCompPlay());
-console.log(getCompPlay());
-console.log(getCompPlay());
+// console.log(getCompPlay());
 
 /* Get User's Move: */
 function getUserMove(tieMessage = "") {
@@ -22,7 +18,7 @@ function getUserMove(tieMessage = "") {
   return play;
 }
 
-console.log("Player threw " + getUserMove() + ".");
+// console.log("Player threw " + getUserMove() + ".");
 
 /* Standardize spelling so user input is not case sensitive:*/
 function capitalize(word) {
@@ -37,11 +33,43 @@ console.log(capitalize("fROg"));
 function playRound() {
   let userMove = getUserMove();
   let compPlay = getCompPlay();
-  let outcome;
-  if (userMove == compPlay) {
+  let win; // scope issue?
+  while (userMove == compPlay) {
+    //has to be WHILE.
     //check for ties first.
     let userMove = getUserMove("It's a tie! Throw again! "); //communicate that the tie happened.
+    compPlay = getCompPlay(); // computer has to throw again, too.
   }
+  // determine win:
+  if (userMove == "Rock") {
+    if (compPlay == "Scissors") {
+      win = true;
+    } else {
+      win = false;
+    }
+  } else if (userMove == "Paper") {
+    if (compPlay == "Rock") {
+      win = true;
+    } else {
+      win = false;
+    }
+  } else if (compPlay == "Paper") {
+    win = true;
+  } else {
+    win = false;
+  }
+  tellResult(userMove, compPlay, win); // alert result
+}
+
+// alert based on win:
+function tellResult(user, comp, win) {
+  let message;
+  if (win == true) {
+    message = "You Win!";
+  } else {
+    message = "You Lose.";
+  }
+  alert(user + " vs. " + comp + "\n" + message);
 }
 
 playRound();
