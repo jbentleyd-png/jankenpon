@@ -10,7 +10,10 @@ function getCompPlay() {
 /* Get User's Move: */
 function getUserMove(tieMessage = "") {
   let play;
-  while (!(play === "Rock" || play === "Paper" || play === "Scissors")) {
+  while (
+    !(play === "Rock" || play === "Paper" || play === "Scissors") ||
+    play == ""
+  ) {
     //check for what we want, not what we don't want.
     play = prompt(tieMessage + "Please enter 'Rock', 'Paper', or 'Scissors'"); //decent, add in reformatting in a second.
     play = capitalize(play);
@@ -20,16 +23,18 @@ function getUserMove(tieMessage = "") {
 
 // console.log("Player threw " + getUserMove() + ".");
 
-/* Standardize spelling so user input is not case sensitive:*/
+/* Standardize spelling so user input is not case sensitive: */
 function capitalize(word) {
+  if (!word) return ""; // prevent enpty inputs by returning falsy values as "" (see condition above)
   let first = word[0].toUpperCase(); //select and capitalize first lettter
   let rest = word.slice(1).toLowerCase(); //work with the end
   //combine
   return first + rest;
 }
 
-console.log(capitalize("fROg"));
+// console.log(capitalize("fROg"));
 
+/* Play a round and get result: */
 function playRound() {
   let userMove = getUserMove();
   let compPlay = getCompPlay();
@@ -72,18 +77,13 @@ function tellResult(user, comp, win) {
   }
   alert(user + " vs. " + comp + "\n" + message);
 }
-/*
-playRound();
-playRound();
-playRound();
-playRound();
-playRound();
-playRound();
-playRound();
+
+/* old "test suite":
 playRound();
 playRound();
 playRound();
 */
+
 function playJankenPon() {
   let winCount = 0;
   for (let i = 0; i < 5; i++) {
@@ -95,4 +95,5 @@ function playJankenPon() {
   alert("Good Game!\nWins: " + winCount + " | Losses: " + (5 - winCount));
 }
 
+/*OK, PLAY! */
 playJankenPon();
