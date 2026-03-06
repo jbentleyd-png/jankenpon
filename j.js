@@ -37,8 +37,8 @@ function playRound() {
   while (userMove == compPlay) {
     //has to be WHILE.
     //check for ties first.
+    compPlay = getCompPlay(); // computer has to throw again, too (BEFORE we ask for the player's play, so there is no advantage)
     let userMove = getUserMove("It's a tie! Throw again! "); //communicate that the tie happened.
-    compPlay = getCompPlay(); // computer has to throw again, too.
   }
   // determine win:
   if (userMove == "Rock") {
@@ -85,9 +85,14 @@ playRound();
 playRound();
 */
 function playJankenPon() {
+  let winCount = 0;
   for (let i = 0; i < 5; i++) {
-    playRound();
+    if (playRound() == true) {
+      winCount++;
+      console.log(winCount);
+    }
   }
+  alert("Good Game!\nWins: " + winCount + " | Losses: " + (5 - winCount));
 }
 
 playJankenPon();
