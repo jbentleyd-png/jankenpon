@@ -15,7 +15,10 @@ function getUserMove(tieMessage = "") {
     play == ""
   ) {
     //check for what we want, not what we don't want.
-    play = prompt(tieMessage + "Please enter 'Rock', 'Paper', or 'Scissors'");
+    play = prompt(
+      tieMessage +
+        "Please enter 'Rock', 'Paper', or 'Scissors'\n('r', 'p', and 's' work too.)",
+    );
     play = standardize(play);
   }
   return play;
