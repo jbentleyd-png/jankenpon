@@ -1,37 +1,30 @@
-/* Generate Computer's Move: */
-function getCompPlay() {
+function getCompMove() {
   let number = Math.random();
   let play = number < 0.33 ? "Rock" : number < 0.66 ? "Paper" : "Scissors";
   return play;
 }
 
-// console.log(getCompPlay());
-
-/* Get User's Move: */
 function getUserMove(tieMessage = "") {
   let play;
   while (
+    //check backwards for what we want, not what we don't want:
     !(play === "Rock" || play === "Paper" || play === "Scissors") ||
     play == ""
   ) {
-    //check for what we want, not what we don't want.
     play = prompt(
       tieMessage +
         "Please enter 'Rock', 'Paper', or 'Scissors'\n('r', 'p', and 's' work too.):",
     );
-    play = standardize(play);
+    play = standardizeInput(play);
   }
   return play;
 }
 
-// console.log("Player threw " + getUserMove() + ".");
-
-/* Standardize spelling so user input is not case sensitive: */
-function standardize(word) {
+function standardizeInput(word) {
   // prevent empty inputs by returning falsy values as "" (see condition above)
   if (!word) return "";
 
-  //if single letters were inputted, return them as the full word:
+  //allow one-letter input
   if (word.length == 1) {
     word = word.toUpperCase();
     if (word == "R") return "Rock";
@@ -40,51 +33,46 @@ function standardize(word) {
   }
 
   //or standardize the full word
-  let first = word[0].toUpperCase(); //select and capitalize first lettter
-  let rest = word.slice(1).toLowerCase(); //lowercase the end
-  //combine
+  let first = word[0].toUpperCase();
+  let rest = word.slice(1).toLowerCase();
   return first + rest;
 }
 
-// console.log(standardize("fROg"));
-
-/* Play a round and get result: */
 function playRound(roundCount) {
   let userMove = getUserMove();
-  let compPlay = getCompPlay();
+  let compMove = getCompMove();
   let win;
-  while (userMove == compPlay) {
+  while (userMove == compMove) {
     //has to be WHILE.
     //check for ties first.
-    compPlay = getCompPlay(); // computer has to throw again, too (BEFORE we ask for the player's play, so there is no advantage)
-    console.log("Rethrow = " + compPlay); //watching
-    userMove = getUserMove("It's a tie! Throw again! "); //communicate that the tie happened.
+    compMove = getCompMove(); // computer has to throw again, too (BEFORE we ask for the player's play, so there is no advantage)
+    console.log("Rethrow = " + compMove);
+    userMove = getUserMove("It's a tie! Throw again! ");
   }
-  console.log(compPlay); //watching
-  // determine win:
+  console.log(compMove);
+
   if (userMove == "Rock") {
-    if (compPlay == "Scissors") {
+    if (compMove == "Scissors") {
       win = true;
     } else {
       win = false;
     }
   } else if (userMove == "Paper") {
-    if (compPlay == "Rock") {
+    if (compMove == "Rock") {
       win = true;
     } else {
       win = false;
     }
-  } else if (compPlay == "Paper") {
+  } else if (compMove == "Paper") {
     win = true;
   } else {
     win = false;
   }
-  tellResult(roundCount, userMove, compPlay, win); // alert result
-  return win; //return win status
+  tellRoundResult(roundCount, userMove, compMove, win);
+  return win;
 }
 
-// alert based on win:
-function tellResult(roundCount, user, comp, win) {
+function tellRoundResult(roundCount, user, comp, win) {
   let message;
   if (win == true) {
     message = "You Win!";
@@ -95,12 +83,6 @@ function tellResult(roundCount, user, comp, win) {
     "Round " + roundCount + "/5:\n\n" + user + " vs. " + comp + "\n" + message,
   );
 }
-
-/* old "test suite":
-playRound();
-playRound();
-playRound();
-*/
 
 function playJankenPon() {
   let winCount = 0;
