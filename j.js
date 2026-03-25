@@ -100,3 +100,5 @@ function playJankenPon() {
 
 /*OK, PLAY! */
 playJankenPon();
+
+console.log("ok now we on a whole new BRANCH, baby");
