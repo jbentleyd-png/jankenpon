@@ -1,0 +1,17 @@
+#top {
+  text-align: center;
+}
+
+#directions {
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: larger;
+  color: darkgreen;
+}
+
+#buttons {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

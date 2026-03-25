@@ -98,7 +98,7 @@ function playJankenPon() {
   alert("Good Game!\nWins: " + winCount + " | Losses: " + (5 - winCount));
 }
 
-/*OK, PLAY! */
-playJankenPon();
+/*legacy running the code was just to write the function*/
+// playJankenPon();
 
 console.log("ok now we on a whole new BRANCH, baby");
