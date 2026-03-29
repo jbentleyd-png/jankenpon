@@ -6,22 +6,17 @@ function getCompMove() {
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
-  button.addEventListener("click", getUserMove);
+  button.addEventListener("click", function (e) {
+    console.log(e.target);
+    return e.target;
+  });
 });
+//now we can do it, but it's stuck inside the event handler.
 
-function getUserMove(tieMessage = "") {
-  let play;
-  while (
-    //check backwards for what we want, not what we don't want:
-    !(play === "Rock" || play === "Paper" || play === "Scissors") ||
-    play == ""
-  ) {
-    play = prompt(
-      tieMessage +
-        "Please enter 'Rock', 'Paper', or 'Scissors'\n('r', 'p', and 's' work too.):",
-    );
-    play = standardizeInput(play);
-  }
+// wait so if it's not named, can we use it later to play the game?????????
+function getUserMove() {
+  const play = e.target; //e is not defined
+  console.log(play);
   return play;
 }
 
