@@ -20,24 +20,6 @@ function getUserMove() {
   return play;
 }
 
-function standardizeInput(word) {
-  // prevent empty inputs by returning falsy values as "" (see condition above)
-  if (!word) return "";
-
-  //allow one-letter input
-  if (word.length == 1) {
-    word = word.toUpperCase();
-    if (word == "R") return "Rock";
-    if (word == "P") return "Paper";
-    if (word == "S") return "Scissors";
-  }
-
-  //or standardize the full word
-  let first = word[0].toUpperCase();
-  let rest = word.slice(1).toLowerCase();
-  return first + rest;
-}
-
 function playRound(roundCount) {
   let userMove = getUserMove();
   let compMove = getCompMove();
