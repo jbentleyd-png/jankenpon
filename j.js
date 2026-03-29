@@ -4,6 +4,11 @@ function getCompMove() {
   return play;
 }
 
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", getUserMove);
+});
+
 function getUserMove(tieMessage = "") {
   let play;
   while (
