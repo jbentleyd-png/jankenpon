@@ -6,22 +6,15 @@ function getCompMove() {
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
-  button.addEventListener("click", function (e) {
-    console.log(e.target);
-    return e.target;
-  });
+  button.addEventListener("click", playRound);
 });
 //now we can do it, but it's stuck inside the event handler.
-
-// wait so if it's not named, can we use it later to play the game?????????
 function getUserMove() {
-  const play = e.target; //e is not defined
-  console.log(play);
-  return play;
+  prompt("enter move");
 }
 
-function playRound(roundCount) {
-  let userMove = getUserMove();
+function playRound(buttonObject, roundCount = 1) {
+  let userMove = buttonObject.target.id;
   let compMove = getCompMove();
   let win;
   while (userMove == compMove) {
