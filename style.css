@@ -1,5 +1,7 @@
 * {
   text-align: center;
+  color: white;
+  background-color: black;
 }
 
 .top {
@@ -9,7 +11,7 @@
 #directions {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: larger;
-  color: darkgreen;
+  color: rgb(249, 87, 0);
   height: 40px;
 }
 
@@ -24,6 +26,8 @@
   width: 70px;
   font-size: 30px;
   border-radius: 20px;
-  background-color: rgb(255, 255, 255);
+  background-color: black;
+  color: white;
+  border-color: white;
   margin: 20px 0;
 }
