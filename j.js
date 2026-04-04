@@ -1,13 +1,16 @@
+const directions = document.querySelector("#directions");
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", playRound);
+});
+
 function getCompMove() {
   let number = Math.random();
   let play = number < 0.33 ? "Rock" : number < 0.66 ? "Paper" : "Scissors";
   return play;
 }
 
-const buttons = document.querySelectorAll("button");
-buttons.forEach((button) => {
-  button.addEventListener("click", playRound);
-});
 //now we can do it, but it's stuck inside the event handler.
 function getUserMove() {
   prompt("enter move");
@@ -18,7 +21,7 @@ function playRound(buttonEventObject, roundCount = 1) {
   let userMove = buttonEventObject.target.id;
   let win;
   if (userMove == compMove) {
-    alert("It's a tie! Throw again! ");
+    directions.textContent = "It's a tie! Throw again!";
     return;
   }
 
@@ -50,9 +53,8 @@ function tellRoundResult(roundCount, user, comp, win) {
   } else {
     message = "You Lose.";
   }
-  alert(
-    "Round " + roundCount + "/5:\n\n" + user + " vs. " + comp + "\n" + message,
-  );
+  directions.textContent =
+    "Round " + roundCount + "/5:\n\n" + user + " vs. " + comp + "\n" + message;
 }
 
 function playJankenPon() {
