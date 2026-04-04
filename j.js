@@ -1,4 +1,7 @@
+const scoreboard = document.querySelector("#scoreboard");
 const directions = document.querySelector("#directions");
+let userScore = 0;
+let compScore = 0;
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
@@ -11,12 +14,7 @@ function getCompMove() {
   return play;
 }
 
-//now we can do it, but it's stuck inside the event handler.
-function getUserMove() {
-  prompt("enter move");
-}
-
-function playRound(buttonEventObject, roundCount = 1) {
+function playRound(buttonEventObject) {
   let compMove = getCompMove();
   let userMove = buttonEventObject.target.id;
   let win;
@@ -42,19 +40,22 @@ function playRound(buttonEventObject, roundCount = 1) {
   } else {
     win = false;
   }
-  tellRoundResult(roundCount, userMove, compMove, win);
+  tellRoundResult(userMove, compMove, win);
+  console.log(userScore);
   return win;
 }
 
-function tellRoundResult(roundCount, user, comp, win) {
+function tellRoundResult(user, comp, win) {
   let message;
   if (win == true) {
     message = "You Win!";
+    ++userScore;
   } else {
     message = "You Lose.";
+    ++compScore;
   }
-  directions.textContent =
-    "Round " + roundCount + "/5:\n\n" + user + " vs. " + comp + "\n" + message;
+  scoreboard.innerHTML = "User : " + userScore + "  CPU : " + compScore;
+  directions.innerHTML = user + " vs. " + comp + "<br>" + message;
 }
 
 function playJankenPon() {
