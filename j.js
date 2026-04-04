@@ -20,7 +20,7 @@ function playRound(buttonEventObject) {
 
   if (userMove == compMove) {
     if (userScore == 0 && compScore == 0) {
-      scoreboard.innerHTML = "User : " + userScore + "  CPU : " + compScore;
+      scoreboard.innerHTML = "User: " + userScore + " | CPU: " + compScore;
     }
     directions.textContent = "It's a tie! Throw again!";
     return;
@@ -58,7 +58,7 @@ function tellRoundResult(user, comp, win) {
     message = "You Lose.";
     ++compScore;
   }
-  scoreboard.innerHTML = "User : " + userScore + "  CPU : " + compScore;
+  scoreboard.innerHTML = "User: " + userScore + " | CPU: " + compScore;
   directions.innerHTML = user + " vs. " + comp + "<br>" + message;
 }
 
@@ -66,8 +66,8 @@ function checkWinLose() {
   if (userScore >= 5 || compScore >= 5) {
     let finalResult =
       userScore > compScore
-        ? "Congratulations, YOU WIN!"
-        : "Game Over: YOU LOSE!";
+        ? "こんぐらっちゅれいしょん、 YOU WIN!"
+        : "げーむ・おーばー、 YOU LOSE!";
 
     directions.innerHTML = finalResult + "<br>" + "Click to play again!";
     compScore = 0;

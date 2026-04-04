@@ -5,18 +5,23 @@
 }
 
 .top {
-  margin: 50px 0 30px;
+  margin: 50px 0 10px;
+}
+
+#scoreboard {
+  color: rgb(137, 200, 255);
+  font-size: x-large;
 }
 
 #directions {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: larger;
+  font-size: xx-large;
   color: rgb(249, 87, 0);
   height: 40px;
 }
 
 #buttons {
-  margin: 20px;
+  margin: 35px;
   display: flex;
   justify-content: center;
   gap: 10px;
