@@ -8,6 +8,18 @@ buttons.forEach((button) => {
   button.addEventListener("click", playRound);
 });
 
+document.addEventListener("keydown", (e) => {
+  if (e.key === "r") {
+    playRound("Rock");
+  }
+  if (e.key === "p") {
+    playRound("Paper");
+  }
+  if (e.key === "s") {
+    playRound("Scissors");
+  }
+});
+
 function getCompMove() {
   let number = Math.random();
   let play = number < 0.33 ? "Rock" : number < 0.66 ? "Paper" : "Scissors";
@@ -16,7 +28,11 @@ function getCompMove() {
 
 function playRound(buttonEventObject) {
   let compMove = getCompMove();
-  let userMove = buttonEventObject.target.id;
+  let userMove = buttonEventObject;
+  //if button was pressed, not shortcut key:
+  if (typeof buttonEventObject !== "string") {
+    userMove = buttonEventObject.target.id;
+  }
 
   if (userMove == compMove) {
     if (userScore == 0 && compScore == 0) {
