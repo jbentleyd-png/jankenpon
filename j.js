@@ -42,6 +42,7 @@ function playRound(buttonEventObject) {
   }
   tellRoundResult(userMove, compMove, win);
   console.log(userScore);
+  checkForWin();
   return win;
 }
 
@@ -58,21 +59,10 @@ function tellRoundResult(user, comp, win) {
   directions.innerHTML = user + " vs. " + comp + "<br>" + message;
 }
 
-function playJankenPon() {
-  let winCount = 0;
-  let roundCount = 1;
-  for (let i = 0; i < 5; i++) {
-    if (playRound(roundCount) == true) {
-      //pass round count through all the functions that need to see it so that it displays in the result notification
-      winCount++;
-      console.log(winCount);
-    }
-    roundCount++;
+function checkForWin() {
+  if (userScore > 5) {
+    alert("You win");
   }
-  alert("Good Game!\nWins: " + winCount + " | Losses: " + (5 - winCount));
 }
-
-/*legacy running the code was just to write the function*/
-// playJankenPon();
 
 console.log("ok now we on a whole new BRANCH, baby");
