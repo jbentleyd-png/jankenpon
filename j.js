@@ -42,7 +42,7 @@ function playRound(buttonEventObject) {
   }
   tellRoundResult(userMove, compMove, win);
   console.log(userScore);
-  checkForWin();
+  checkWinLose();
   return win;
 }
 
@@ -59,9 +59,12 @@ function tellRoundResult(user, comp, win) {
   directions.innerHTML = user + " vs. " + comp + "<br>" + message;
 }
 
-function checkForWin() {
-  if (userScore > 5) {
-    alert("You win");
+function checkWinLose() {
+  if (userScore >= 5 || compScore >= 5) {
+    let finalResult = userScore > compScore ? "YOU WIN!" : "YOU LOSE!";
+    alert(finalResult);
+    compScore = 0;
+    userScore = 0;
   }
 }
 
