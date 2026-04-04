@@ -17,12 +17,13 @@ function getCompMove() {
 function playRound(buttonEventObject) {
   let compMove = getCompMove();
   let userMove = buttonEventObject.target.id;
-  let win;
+
   if (userMove == compMove) {
     directions.textContent = "It's a tie! Throw again!";
     return;
   }
 
+  let win;
   if (userMove == "Rock") {
     if (compMove == "Scissors") {
       win = true;
@@ -41,7 +42,6 @@ function playRound(buttonEventObject) {
     win = false;
   }
   tellRoundResult(userMove, compMove, win);
-  console.log(userScore);
   checkWinLose();
   return win;
 }
@@ -61,8 +61,12 @@ function tellRoundResult(user, comp, win) {
 
 function checkWinLose() {
   if (userScore >= 5 || compScore >= 5) {
-    let finalResult = userScore > compScore ? "YOU WIN!" : "YOU LOSE!";
-    alert(finalResult);
+    let finalResult =
+      userScore > compScore
+        ? "Congratulations, YOU WIN!"
+        : "Game Over: YOU LOSE!";
+
+    directions.innerHTML = finalResult + "<br>" + "Click to play again!";
     compScore = 0;
     userScore = 0;
   }
