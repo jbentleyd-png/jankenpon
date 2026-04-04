@@ -19,6 +19,9 @@ function playRound(buttonEventObject) {
   let userMove = buttonEventObject.target.id;
 
   if (userMove == compMove) {
+    if (userScore == 0 && compScore == 0) {
+      scoreboard.innerHTML = "User : " + userScore + "  CPU : " + compScore;
+    }
     directions.textContent = "It's a tie! Throw again!";
     return;
   }
