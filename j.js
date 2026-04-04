@@ -13,18 +13,14 @@ function getUserMove() {
   prompt("enter move");
 }
 
-function playRound(buttonObject, roundCount = 1) {
-  let userMove = buttonObject.target.id;
+function playRound(buttonEventObject, roundCount = 1) {
   let compMove = getCompMove();
+  let userMove = buttonEventObject.target.id;
   let win;
-  while (userMove == compMove) {
-    //has to be WHILE.
-    //check for ties first.
-    compMove = getCompMove(); // computer has to throw again, too (BEFORE we ask for the player's play, so there is no advantage)
-    console.log("Rethrow = " + compMove);
-    userMove = getUserMove("It's a tie! Throw again! ");
+  if (userMove == compMove) {
+    alert("It's a tie! Throw again! ");
+    return;
   }
-  console.log(compMove);
 
   if (userMove == "Rock") {
     if (compMove == "Scissors") {
