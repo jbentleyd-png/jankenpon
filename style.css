@@ -2,10 +2,15 @@
   text-align: center;
 }
 
+.top {
+  margin: 50px 0 30px;
+}
+
 #directions {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: larger;
   color: darkgreen;
+  height: 40px;
 }
 
 #buttons {
@@ -13,4 +18,12 @@
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+#buttons button {
+  width: 70px;
+  font-size: 30px;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  margin: 20px 0;
 }
